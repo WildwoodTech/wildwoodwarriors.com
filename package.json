@@ -1,0 +1,35 @@
+{
+  "name": "node_video_server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "prestart": "npm i && cd frontend && npm i && npm run build",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd frontend && npm start\""
+  },
+  "keywords": [],
+  "author": "Ericarthurc",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chalk": "^4.0.0",
+    "connect-history-api-fallback": "^1.6.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.9",
+    "morgan": "^1.10.0",
+    "socket.io": "^2.3.0",
+    "validator": "^13.0.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.3"
+  }
+}
