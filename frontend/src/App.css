@@ -50,6 +50,7 @@ p {
   /* margin-left: 10%;
   margin-right: 10%; */
   margin-top: 15px;
+  margin-bottom: 15px;
   display: grid;
   grid-template-rows: 40px;
   grid-auto-flow: column;
@@ -69,6 +70,15 @@ p {
 .Navbar__Item a:hover {
   text-decoration: none;
   color: #802023;
+}
+
+@media only screen and (max-width: 600px) {
+  .Navbar {
+    gap: 15px;
+  }
+  .Navbar__Item a {
+    font-size: 22px;
+  }
 }
 
 .Info {
