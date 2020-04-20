@@ -24,6 +24,8 @@ body {
 
 p {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .App {
@@ -42,6 +44,31 @@ p {
 .Header__Icon {
   justify-self: center;
   height: 100px;
+}
+
+.Navbar {
+  /* margin-left: 10%;
+  margin-right: 10%; */
+  margin-top: 15px;
+  display: grid;
+  grid-template-rows: 40px;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.Navbar__Item a {
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.Navbar__Item a:hover {
+  text-decoration: none;
+  color: #802023;
 }
 
 .Info {
