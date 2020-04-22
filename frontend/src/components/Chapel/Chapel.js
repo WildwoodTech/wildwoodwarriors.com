@@ -4,8 +4,8 @@ const Chapel = () => {
   return (
     <>
       <div className="Info">
-        <p>Chapel with Pastor Phil</p>
-        <p>Current Week: April 16th</p>
+        <p>Chapel with Pastor Andrew</p>
+        <p>Current Week: April 23rd</p>
       </div>
       <div className="Content">
         <div></div>
@@ -13,7 +13,7 @@ const Chapel = () => {
           <div className="player-wrapper">
             <video className="react-player" width="100%" height="100%" controls>
               <source
-                src="/api/v1/videos/chapel_4-16-20"
+                src="/api/v1/videos/chapel_4-23-20"
                 type="video/mp4"
               ></source>
             </video>
