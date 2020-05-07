@@ -1,5 +1,6 @@
 :root {
   --main-color: #303233;
+  --red: #802023;
 }
 
 html {
@@ -15,6 +16,26 @@ html {
   box-sizing: inherit;
 }
 
+/* The emerging W3C standard
+   that is currently Firefox-only */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) var(--main-color);
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--main-color);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--red);
+  border-radius: 20px;
+  border: 3px solid var(--red);
+}
+
 body {
   margin: 0px;
   padding: 10px;
@@ -23,7 +44,7 @@ body {
 }
 
 p {
-  text-align: center;
+  /* text-align: center; */
   margin: 0;
   padding: 0;
 }
@@ -81,17 +102,13 @@ p {
   }
 }
 
-.Info {
-  justify-self: center;
-  align-self: center;
-}
-
 .Info p {
   margin: 0px;
   padding: 0px;
   font-size: 30px;
   font-weight: bold;
   color: #802023;
+  text-align: center;
 }
 
 .Info p:nth-child(2) {
@@ -99,10 +116,23 @@ p {
   font-weight: 500;
 }
 
+.Return__Link {
+  margin-top: 20px;
+}
+
+.Return__Link a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
 .Content {
   display: grid;
   grid-template-columns: 3% auto 3%;
   align-content: center;
+  margin-top: 20px;
 }
 
 .Content__Player {
@@ -156,4 +186,91 @@ p {
 
 .Footer {
   height: 40px;
+}
+
+/* ------------------------------ NEW ------------------------------- */
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+.Main__Content-Wrapper {
+  display: grid;
+  margin-top: 25px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.Content-Wrapper {
+  display: grid;
+  grid-template-rows: auto auto;
+  margin-bottom: 20px;
+}
+
+.Content-Header {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.Content__Video-Wrapper {
+  // margin-top: 20px;
+  // margin-bottom: 20px;
+  display: grid;
+  grid-auto-flow: column;
+  width: 80%;
+  justify-self: center;
+  gap: 5%;
+}
+
+@media only screen and (max-width: 700px) {
+  .Content__Video-Wrapper {
+    grid-auto-flow: row;
+  }
+  .Content-Wrapper {
+    margin-bottom: 30px;
+  }
+}
+
+.Content__Video-Thumbnail-Wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.Content__Video-Thumbnail {
+  width: 100%;
+  height: 100%;
+}
+
+// TESTETSTESTETSTETS -------------------
+
+.Video-Context {
+  position: absolute;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 15px;
+  opacity: 1;
+  transform: translateY(-44px);
+  transition: all 0.5s;
+}
+
+.Content__Video-Thumbnail-Wrapper {
+  &:hover {
+    .Video-Context {
+      color: #ff0000;
+    }
+  }
+  &:focus {
+    .Video-Context {
+      color: #ff0000;
+    }
+  }
 }

@@ -1,47 +1,53 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 
 // ROUTER
-import { Router, Route, Link, Redirect } from 'react-router-dom';
+import {
+  Router,
+  Route,
+  Link,
+  Redirect,
+  Switch,
+  useLocation,
+} from 'react-router-dom';
 
 // REACT COMPONENTS
-import Chapel from './components/Chapel/Chapel';
-import Pe from './components/Pe/Pe';
-import Middle from './components/Pe/Middle/Middle';
-import Elementary from './components/Pe/Elementary/Elementary';
+import Home from './components/Home/Home';
+import Watch from './components/Watch/Watch';
 
 // LOGO
 import Logo from './assets/images/wca_logos.png';
 
+// VIDEO THIMBNAILS
+import Chapel_5_7 from './assets/images/chapel_5-7.png';
+
+// A custom hook that builds on useLocation to parse
+// the query string for you.
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
 function App() {
+  let query = useQuery();
   return (
     <>
       <div className="Header">
         <img className="Header__Icon" src={Logo} />
       </div>
-      <div className="Navbar">
-        <div className="Navbar__Item">
-          <Link to="/chapel">
-            <div>Chapel</div>
-          </Link>
-        </div>
-        <div className="Navbar__Item">
-          <Link to="/pe">
-            <div>Physical Education</div>
-          </Link>
-        </div>
-      </div>
-      <div>
+      <Switch>
+        <Route exact path="/" render={() => <Home />} />
         <Route
           exact
-          path="/"
-          render={() => <Redirect to="/chapel"></Redirect>}
+          path="/watch"
+          render={() => (
+            <Watch
+              location={query.get('v')}
+              title={query.get('til')}
+              teacher={query.get('tec')}
+            />
+          )}
         />
-        <Route exact path="/chapel" render={(props) => <Chapel />} />
-        <Route exact path="/pe" render={(props) => <Pe />} />
-        <Route exact path="/pe/middle" render={(props) => <Middle />} />
-        <Route exact path="/pe/elementary" render={(props) => <Elementary />} />
-      </div>
+      </Switch>
     </>
   );
 }
