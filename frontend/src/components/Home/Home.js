@@ -5,7 +5,7 @@ import { Router, Route, Link, Redirect, Switch } from 'react-router-dom';
 
 // VIDEO THIMBNAILS
 import chapel_5_7 from '../../assets/images/chapel_5-7.png';
-import chapel_4_30 from '../../assets/images/chapel_4-30.png';
+import chapel_5_14 from '../../assets/images/chapel_5-14.png';
 import pe_e_1 from '../../assets/images/pe_e_1.png';
 import pe_2 from '../../assets/images/pe_2.png';
 
@@ -81,6 +81,18 @@ const Home = () => {
         <div className="Content-Wrapper">
           <p className="Content-Header">Chapel Videos</p>
           <div className="Content__Video-Wrapper">
+            <Link
+              to={`/watch?v=chapel_5-14-20&til=Chapel&tec=Principal%20Reid`}
+            >
+              <div className="Content__Video-Thumbnail-Wrapper">
+                <img
+                  className="Content__Video-Thumbnail"
+                  alt="chapel_logo"
+                  src={chapel_5_14}
+                ></img>
+                <div className="Video-Context">Principal Reid (May 14th)</div>
+              </div>
+            </Link>
             <Link to={`/watch?v=chapel_5-7-20&til=Chapel&tec=Pastor%20Jake`}>
               <div className="Content__Video-Thumbnail-Wrapper">
                 <img
@@ -89,18 +101,6 @@ const Home = () => {
                   src={chapel_5_7}
                 ></img>
                 <div className="Video-Context">Pastor Jake (May 7th)</div>
-              </div>
-            </Link>
-            <Link
-              to={`/watch?v=chapel_4-30-20&til=Chapel&tec=Principal%20Reid`}
-            >
-              <div className="Content__Video-Thumbnail-Wrapper">
-                <img
-                  className="Content__Video-Thumbnail"
-                  alt="chapel_logo"
-                  src={chapel_4_30}
-                ></img>
-                <div className="Video-Context">Principal Reid (April 30th)</div>
               </div>
             </Link>
           </div>
