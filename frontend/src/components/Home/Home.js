@@ -14,10 +14,33 @@ import kinder2nd from '../../assets/images/kinder2nd.png';
 import third5th from '../../assets/images/3rd5th.png';
 import sixth8th from '../../assets/images/6th8th.png';
 
+import wcaInterview from '../../assets/images/wca_interview.png';
+
 const Home = () => {
   return (
     <>
       <div className="Main__Content-Wrapper">
+        {/* SPACER */}
+        <div className="Content-Wrapper">
+          <p className="Content-Header">Graduation Congratulations!</p>
+          <div className="Content__Video-Wrapper">
+            <Link
+              to={`/watch?v=wca_interview&til=Interview&tec=Pastor%20Chris`}
+            >
+              <div className="Content__Video-Thumbnail-Wrapper">
+                <img
+                  className="Content__Video-Thumbnail"
+                  alt="chapel_logo"
+                  src={wcaInterview}
+                ></img>
+                <div className="Video-Context">
+                  Principal Reid and Pastor Chris
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
         <div className="Content-Wrapper">
           <p className="Content-Header">
             Creative Writing and Art Contest Awards
