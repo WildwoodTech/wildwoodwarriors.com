@@ -4,8 +4,6 @@ import React from 'react';
 import { Router, Route, Link, Redirect, Switch } from 'react-router-dom';
 
 const Chapel = (props) => {
-  console.log(props);
-
   return (
     <>
       <div className="Return__Link">

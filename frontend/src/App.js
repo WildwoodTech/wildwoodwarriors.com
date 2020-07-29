@@ -1,42 +1,51 @@
-import React from 'react';
-import './App.scss';
+import React, { useContext } from 'react';
+import './App.css';
 
 // ROUTER
 import {
-  Router,
+  BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
   Switch,
   useLocation,
 } from 'react-router-dom';
 
-// REACT COMPONENTS
-import Home from './components/Home/Home';
-import Watch from './components/Watch/Watch';
+// Styling
+import { ThemeProvider } from 'styled-components';
+import { ThemeContext } from './context/theme-context';
+import GlobalStyle from './styles/global';
+import themeSelector from './styles/themes';
+
+// Containers
+import Home from './components/Home';
+import Watch from './components/Watch';
+
+// Components
+import NavBar from './components/Navbar';
 
 // LOGO
 import Logo from './assets/images/wca_logos.png';
 
-// VIDEO THIMBNAILS
-import Chapel_5_7 from './assets/images/chapel_5-7.png';
-
 // A custom hook that builds on useLocation to parse
 // the query string for you.
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
+// const useQuery = () => {
+//   return new URLSearchParams(useLocation().search);
+// };
 
-function App() {
-  let query = useQuery();
+const App = () => {
+  const themeContext = useContext(ThemeContext);
+  // let query = useQuery();
   return (
-    <>
-      <div className="Header">
-        <img className="Header__Icon" src={Logo} />
-      </div>
-      <Switch>
-        <Route exact path="/" render={() => <Home />} />
-        <Route
+    <ThemeProvider theme={themeSelector(themeContext.theme)}>
+      <Router>
+        <NavBar />
+        <div className="Header">
+          <img className="Header__Icon" src={Logo} />
+        </div>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          {/* <Route
           exact
           path="/watch"
           render={() => (
@@ -46,10 +55,12 @@ function App() {
               teacher={query.get('tec')}
             />
           )}
-        />
-      </Switch>
-    </>
+        /> */}
+        </Switch>
+      </Router>
+      <GlobalStyle />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

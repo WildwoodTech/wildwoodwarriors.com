@@ -1,25 +1,25 @@
 import React from 'react';
 
 // ROUTER
-import { Router, Route, Link, Redirect, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // VIDEO THIMBNAILS
-import chapel_5_7 from '../../assets/images/chapel_5-7.png';
-import chapel_5_14 from '../../assets/images/chapel_5-14.png';
-import pe_3 from '../../assets/images/pe_3.png';
-import pe_2 from '../../assets/images/pe_2.png';
+import chapel_5_7 from '../assets/images/chapel_5-7.png';
+import chapel_5_14 from '../assets/images/chapel_5-14.png';
+import pe_3 from '../assets/images/pe_3.png';
+import pe_2 from '../assets/images/pe_2.png';
 
-import writers from '../../assets/images/writers.png';
-import kinder2nd from '../../assets/images/kinder2nd.png';
-import third5th from '../../assets/images/3rd5th.png';
-import sixth8th from '../../assets/images/6th8th.png';
+import writers from '../assets/images/writers.png';
+import kinder2nd from '../assets/images/kinder2nd.png';
+import third5th from '../assets/images/3rd5th.png';
+import sixth8th from '../assets/images/6th8th.png';
 
-import wcaInterview from '../../assets/images/wca_interview.png';
+import wcaInterview from '../assets/images/wca_interview.png';
 
-import k1 from '../../assets/images/k-1.png';
-import twothree from '../../assets/images/2-3.png';
-import fourfive from '../../assets/images/4-5.png';
-import sixeight from '../../assets/images/6-8.png';
+import k1 from '../assets/images/k-1.png';
+import twothree from '../assets/images/2-3.png';
+import fourfive from '../assets/images/4-5.png';
+import sixeight from '../assets/images/6-8.png';
 
 const Home = () => {
   return (
