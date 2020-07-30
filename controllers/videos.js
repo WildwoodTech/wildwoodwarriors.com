@@ -1,19 +1,30 @@
+const Video = require('../models/Video');
+const db = require('../config/db');
 const fs = require('fs');
-
-// const Video = require("../models/Video");
-// const db = require("../config/db");
+const encode = require('../utils/encode');
 
 // @desc    Get all videos
 // @route   GET /api/v1/videos
-// @access  Private
-exports.getVideos = async (req, res, next) => {};
+// @access  Public
+exports.getVideos = async (req, res, next) => {
+  try {
+    const videos = await Video.find({});
+
+    res.status(200).json({ success: true, data: videos });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+};
 
 // @desc    Get single video
 // @route   GET /api/v1/videos/:id
-// @access  Private
+// @access  Public
 exports.getVideo = async (req, res, next) => {
+  console.log(req.params);
+  console.log(req.query);
+
   try {
-    const path = `assets/videos/${req.params.id}.mp4`;
+    const path = `assets/videos/converted/${req.params.id}`;
     const stat = fs.statSync(path);
     const fileSize = stat.size;
     const range = req.headers.range;
@@ -59,7 +70,32 @@ exports.getVideo = async (req, res, next) => {
 // @desc    Upload new video
 // @route   POST /api/v1/videos
 // @access  Private
-exports.uploadVideo = async (req, res, next) => {};
+exports.uploadVideo = async (req, res, next) => {
+  console.log(req.body.title);
+  console.log(req.filename);
+  console.log(req.file);
+  console.log(req.file.path);
+
+  try {
+    await encode(
+      `./assets/videos/${req.filename}`,
+      `./assets/videos/converted/${req.filename}`,
+      '1280x720',
+      '1000k'
+    );
+
+    const video = await Video.create({
+      title: req.body.title,
+      path: `./assets/videos/converted/${req.filename}`,
+      videoId: req.filename,
+    });
+    res.status(200).json({ success: true, data: video });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({ success: false, error });
+  }
+};
 
 // @desc    Update single video
 // @route   PUT /api/v1/videos/:id
