@@ -4,58 +4,12 @@ p {
   padding: 0;
 }
 
-.App {
+/* .App {
   display: grid;
   grid-template-rows: 100px auto auto;
   gap: 20px;
   margin-top: 20px;
-}
-
-.Header {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-}
-
-.Header__Icon {
-  justify-self: center;
-  height: 100px;
-}
-
-.Navbar {
-  /* margin-left: 10%;
-  margin-right: 10%; */
-  margin-top: 15px;
-  margin-bottom: 15px;
-  display: grid;
-  grid-template-rows: 40px;
-  grid-auto-flow: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
-.Navbar__Item a {
-  text-decoration: none;
-  color: black;
-  font-size: 30px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.Navbar__Item a:hover {
-  text-decoration: none;
-  color: #802023;
-}
-
-@media only screen and (max-width: 600px) {
-  .Navbar {
-    gap: 15px;
-  }
-  .Navbar__Item a {
-    font-size: 22px;
-  }
-}
+} */
 
 .Info p {
   margin: 0px;

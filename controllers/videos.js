@@ -71,11 +71,6 @@ exports.getVideo = async (req, res, next) => {
 // @route   POST /api/v1/videos
 // @access  Private
 exports.uploadVideo = async (req, res, next) => {
-  console.log(req.body.title);
-  console.log(req.filename);
-  console.log(req.file);
-  console.log(req.file.path);
-
   try {
     await encode(
       `./assets/videos/${req.filename}`,

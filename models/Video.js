@@ -7,11 +7,11 @@ const videoSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    // category: {
-    //   type: String,
-    //   required: true,
-    //   trim: true,
-    // },
+    category: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     path: {
       type: String,
       required: true,
@@ -20,11 +20,11 @@ const videoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
-    },
+    // owner: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: 'User',
+    // },
   },
   {
     timestamps: true,

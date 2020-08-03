@@ -9,7 +9,9 @@ const Navbar = () => {
   return (
     <StyledNav>
       <StyledNavTitleDiv>
-        <StyledNavTitle>Warriors Online</StyledNavTitle>
+        <StyledNavTitle exact to="/">
+          Warriors Online
+        </StyledNavTitle>
       </StyledNavTitleDiv>
       <StyledLink exact to="/">
         Home
@@ -28,7 +30,9 @@ const StyledNavTitleDiv = styled.div`
   flex-grow: 1;
 `;
 
-const StyledNavTitle = styled.p`
+const StyledNavTitle = styled(NavLink)`
+  text-decoration: none;
+  border-bottom: none;
   font-weight: bold;
   font-size: 1.5rem;
   color: ${({ theme }) => theme.fontAccent};

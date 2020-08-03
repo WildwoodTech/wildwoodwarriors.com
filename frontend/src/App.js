@@ -10,14 +10,14 @@ import {
 } from 'react-router-dom';
 
 // Styling
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { ThemeContext } from './context/theme-context';
 import GlobalStyle from './styles/global';
 import themeSelector from './styles/themes';
 
 // Containers
-import Home from './components/Home';
-import Watch from './components/Watch';
+import Home from './containers/Home';
+import Watch from './containers/Watch';
 
 // Components
 import NavBar from './components/Navbar';
@@ -38,12 +38,15 @@ const App = () => {
     <ThemeProvider theme={themeSelector(themeContext.theme)}>
       <Router>
         <NavBar />
-        <div className="Header">
-          <img className="Header__Icon" src={Logo} />
-        </div>
         <Switch>
           <Route exact path="/">
+            <StyledHeader>
+              <StyledHeaderImage className="Header__Icon" src={Logo} />
+            </StyledHeader>
             <Home />
+          </Route>
+          <Route exact path="/watch">
+            <Watch />
           </Route>
           {/* <Route
           exact
@@ -64,3 +67,15 @@ const App = () => {
 };
 
 export default App;
+
+const StyledHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin-top: 20px;
+`;
+
+const StyledHeaderImage = styled.img`
+  justify-self: center;
+  height: 100px;
+`;

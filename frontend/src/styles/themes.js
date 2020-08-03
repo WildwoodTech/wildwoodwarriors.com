@@ -2,8 +2,8 @@ const lightTheme = {
   backgroundColor: '#edf2f7',
   fontColor: '#201f1d',
   fontAccent: '#802023',
-  navBar: '#edf2f7',
-  navBarFontColor: '#edf2f7',
+  navBar: '#bec2C6',
+  // navBarFontColor: '#edf2f7',
   themeSwitcherBackground: '#201f1d',
   themeSwitcherCircle: '#edf2f7',
 };
