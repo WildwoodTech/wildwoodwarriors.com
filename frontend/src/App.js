@@ -48,7 +48,7 @@ const App = () => {
             </StyledHeader>
             <Home />
           </Route>
-          <Route exact path="/watch">
+          <Route path="/watch">
             <Watch />
           </Route>
           <Route exact path="/elementaryschool">

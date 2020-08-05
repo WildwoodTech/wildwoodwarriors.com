@@ -83,6 +83,7 @@ exports.uploadVideo = async (req, res, next) => {
       title: req.body.title,
       path: `./assets/videos/converted/${req.filename}`,
       videoId: req.filename,
+      category: req.body.category,
     });
     res.status(200).json({ success: true, data: video });
   } catch (error) {

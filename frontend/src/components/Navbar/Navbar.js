@@ -14,7 +14,7 @@ const Navbar = () => {
       <StyledLink exact to="/">
         Home
       </StyledLink>
-      {/* <StyledLink to="/blog">Blog</StyledLink> */}
+      <StyledLink to="/watch">Videos</StyledLink>
       <ThemeSwitch></ThemeSwitch>
     </StyledNav>
   );

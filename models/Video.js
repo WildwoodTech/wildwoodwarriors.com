@@ -11,7 +11,6 @@ const videoSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      trim: true,
     },
     path: {
       type: String,

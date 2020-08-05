@@ -24,12 +24,16 @@ const {
 } = require('../controllers/videos');
 
 // Middleware
-// const authentication = require("../middleware/authentication");
+const authentication = require('../middleware/authentication');
 
 const router = new express.Router();
 
 router.route('/').get(getVideos).post(upload.single('videoFile'), uploadVideo);
 
-router.route('/:id').get(getVideo).patch(updateVideo).delete(deleteVideo);
+router
+  .route('/:id')
+  .get(getVideo)
+  .patch(authentication, updateVideo)
+  .delete(authentication, deleteVideo);
 
 module.exports = router;
