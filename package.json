@@ -1,13 +1,13 @@
 {
-  "name": "node_video_server",
+  "name": "online.wildwoodwarriors.com",
   "version": "0.0.1",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "prestart": "npm i && cd frontend && npm i && npm run build",
+    "prestart": "yarn install && cd frontend && yarn install && yarn build",
     "start": "cross-env NODE_ENV=production node server.js",
     "dev-api": "nodemon server.js",
-    "dev": "concurrently \"nodemon server.js\" \"cd frontend && npm start\""
+    "dev": "concurrently \"nodemon server.js\" \"cd frontend && yarn start\""
   },
   "keywords": [],
   "author": "Ericarthurc",
@@ -15,7 +15,6 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "chalk": "^4.0.0",
-    "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",

@@ -1,8 +1,3 @@
-// Express video server
-// Ericarthurc
-// April 14, 2020
-// Version 0.0.1
-
 const express = require('express');
 const chalk = require('chalk');
 const fs = require('fs');
@@ -11,7 +6,6 @@ const http = require('http');
 const socketIo = require('socket.io');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
-const history = require('connect-history-api-fallback');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -21,17 +15,23 @@ const cors = require('cors');
 dotenv.config({ path: './config/config.env' });
 
 // Connect to database
-// require("./config/db");
+require('./config/db');
 
 // Route files
 const videos = require('./routes/videos');
+const users = require('./routes/users');
 
 const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 
-// Dev logging middleware
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('combined'));
-}
+// Pass socket to req
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
+// Enable CORS
+app.use(cors());
 
 // Cookie parser
 app.use(cookieParser());
@@ -43,19 +43,24 @@ app.use(express.json());
 app.use(helmet());
 
 // Prevent XSS attacks
-app.use(xss());
+// app.use(xss());
 
-// Enable CORS
-app.use(cors());
+// Dev logging middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('combined'));
+}
+
+// Serve Static Build
+app.use(express.static(path.join(__dirname, './frontend/build')));
 
 // Mount routers
+app.use('/api/v1/users', users);
 app.use('/api/v1/videos', videos);
 
-// History mode for React Router
-app.use(history());
-
-// Serve Static React
-app.use(express.static('./frontend/build'));
+// Catch all back to React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './frontend/build/index.html'));
+});
 
 app.listen(process.env.PORT, () =>
   console.log(

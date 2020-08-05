@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const chalk = require('chalk');
 
 const videoSchema = new mongoose.Schema(
   {
@@ -32,5 +33,9 @@ const videoSchema = new mongoose.Schema(
 );
 
 const Video = mongoose.model('Video', videoSchema);
+
+Video.createCollection().then(function (collection) {
+  console.log(chalk.green('Video collection created!'));
+});
 
 module.exports = Video;
