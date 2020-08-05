@@ -2,7 +2,7 @@
   "name": "online.wildwoodwarriors.com",
   "version": "0.0.1",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "prestart": "yarn install && cd frontend && yarn install && yarn build",
     "start": "cross-env NODE_ENV=production node server.js",

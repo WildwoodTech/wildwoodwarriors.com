@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Watch = () => {
-  return <div></div>;
+  return (
+    <>
+      <h1>WATCH</h1>
+    </>
+  );
 };
 
 export default Watch;
