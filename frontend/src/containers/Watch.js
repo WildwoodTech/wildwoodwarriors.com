@@ -23,9 +23,12 @@ const Watch = () => {
 
   const videoLinks = videos.map((video) => {
     return (
-      <StyledLink key={video._id} exact to={`/watch/${video.videoId}`}>
-        {video.title}
-      </StyledLink>
+      <>
+        <StyledLink key={video._id} exact to={`/watch/${video.videoId}`}>
+          {video.title}
+        </StyledLink>
+        <img src={`/api/v1/videos/thumbnail/${video.videoId}`} />
+      </>
     );
   });
 

@@ -6,6 +6,8 @@ const lightTheme = {
   // navBarFontColor: '#edf2f7',
   themeSwitcherBackground: '#201f1d',
   themeSwitcherCircle: '#edf2f7',
+  buttonBackgroundColor: '#80202350',
+  buttonBorderHoverColor: '#201f1d',
 };
 
 const darkTheme = {
@@ -15,6 +17,8 @@ const darkTheme = {
   navBar: '#181818',
   themeSwitcherBackground: '#edf2f7',
   themeSwitcherCircle: '#201f1d',
+  buttonBackgroundColor: '#80202350',
+  buttonBorderHoverColor: '#edf2f7',
 };
 
 const screenSizes = {

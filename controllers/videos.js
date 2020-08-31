@@ -2,6 +2,7 @@ const Video = require('../models/Video');
 const db = require('../config/db');
 const fs = require('fs');
 const encode = require('../utils/encode');
+const encode2 = require('../utils/encode2');
 
 // @desc    Get all videos
 // @route   GET /api/v1/videos
@@ -17,11 +18,22 @@ exports.getVideos = async (req, res, next) => {
 };
 
 // @desc    Get single video
+// @route   GET /api/v1/videos/thumbnail/:id
+// @access  Public
+exports.getThumbnail = async (req, res) => {
+  console.log(req.params);
+  try {
+    console.log('IMAGE HERE');
+    const path = `assets/videos/converted/thumbnails/${req.params.id}.png`;
+    res.sendFile(path);
+  } catch (error) {}
+};
+
+// @desc    Get single video
 // @route   GET /api/v1/videos/:id
 // @access  Public
 exports.getVideo = async (req, res, next) => {
   console.log(req.params);
-  console.log(req.query);
 
   try {
     const path = `assets/videos/converted/${req.params.id}`;
@@ -72,16 +84,16 @@ exports.getVideo = async (req, res, next) => {
 // @access  Private
 exports.uploadVideo = async (req, res, next) => {
   try {
-    await encode(
+    await encode2(
       `./assets/videos/${req.filename}`,
       `./assets/videos/converted/${req.filename}`,
-      '1280x720',
-      '1000k'
+      req.filename
     );
 
     const video = await Video.create({
       title: req.body.title,
       path: `./assets/videos/converted/${req.filename}`,
+      image: `./assets/videos/converted/thumbnails/${req.filename}.png`,
       videoId: req.filename,
       category: req.body.category,
     });

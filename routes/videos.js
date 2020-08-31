@@ -18,6 +18,7 @@ const upload = multer({ storage });
 const {
   getVideos,
   getVideo,
+  getThumbnail,
   uploadVideo,
   updateVideo,
   deleteVideo,
@@ -35,5 +36,7 @@ router
   .get(getVideo)
   .patch(authentication, updateVideo)
   .delete(authentication, deleteVideo);
+
+router.route('/thumbnail/:id').get(getThumbnail);
 
 module.exports = router;

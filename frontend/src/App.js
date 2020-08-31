@@ -28,15 +28,8 @@ import NavBar from './components/Navbar/Navbar';
 // LOGO
 import Logo from './assets/images/wca_logos.png';
 
-// A custom hook that builds on useLocation to parse
-// the query string for you.
-// const useQuery = () => {
-//   return new URLSearchParams(useLocation().search);
-// };
-
 const App = () => {
   const themeContext = useContext(ThemeContext);
-  // let query = useQuery();
   return (
     <ThemeProvider theme={themeSelector(themeContext.theme)}>
       <Router>
@@ -61,17 +54,6 @@ const App = () => {
             <Admin />
           </Route>
           <Redirect to="/" />
-          {/* <Route
-          exact
-          path="/watch"
-          render={() => (
-            <Watch
-              location={query.get('v')}
-              title={query.get('til')}
-              teacher={query.get('tec')}
-            />
-          )}
-        /> */}
         </Switch>
       </Router>
       <GlobalStyle />

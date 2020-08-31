@@ -8,7 +8,7 @@ const Navbar = () => {
     <StyledNav>
       <StyledNavTitleDiv>
         <StyledNavTitle exact to="/">
-          Warriors Online
+          Warriors
         </StyledNavTitle>
       </StyledNavTitleDiv>
       <StyledLink exact to="/">
