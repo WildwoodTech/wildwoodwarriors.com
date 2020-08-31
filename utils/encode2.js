@@ -2,12 +2,15 @@ const ffmpeg = require('fluent-ffmpeg');
 const { Error } = require('mongoose');
 
 const encode2 = async (input, output, filename) => {
-  try {
-    const command = ffmpeg()
-      .on('start', () => console.log('STARTING'))
-      .on('progress', (progress) =>
-        console.log(`Processing: ${progress.percent}`)
-      )
+  return new Promise((resolve, reject) => {
+    ffmpeg()
+      .on('progress', (progress) => console.log(progress.percent))
+      .on('error', (error) => {
+        return reject(error);
+      })
+      .on('end', () => {
+        return resolve();
+      })
       .input(input)
       .audioCodec('aac')
       .audioBitrate('128k')
@@ -16,19 +19,13 @@ const encode2 = async (input, output, filename) => {
       .size('1280x720')
       .format('mp4')
       .screenshot({
-        timestamps: ['2%'],
-        filename: `${filename}.png`,
+        timestamps: [10],
+        filename: `${filename}`,
         folder: `./assets/videos/converted/thumbnails`,
-        size: '1280x720',
+        size: '720x404',
       })
-      .on('error', (error) => {
-        throw new Error(error);
-      })
-      .on('end', () => console.log('Processing finished !'))
       .save(output);
-  } catch (error) {
-    console.log(error);
-  }
+  });
 };
 
 module.exports = encode2;

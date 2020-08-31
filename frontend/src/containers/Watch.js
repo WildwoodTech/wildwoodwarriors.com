@@ -23,12 +23,10 @@ const Watch = () => {
 
   const videoLinks = videos.map((video) => {
     return (
-      <>
-        <StyledLink key={video._id} exact to={`/watch/${video.videoId}`}>
-          {video.title}
-        </StyledLink>
-        <img src={`/api/v1/videos/thumbnail/${video.videoId}`} />
-      </>
+      <StyledLink key={video._id} exact to={`/watch/${video.videoId}`}>
+        <StyledImage src={`/api/v1/videos/thumbnail/${video.videoId}`} />
+        {video.title}
+      </StyledLink>
     );
   });
 
@@ -48,12 +46,10 @@ const Watch = () => {
 
   return (
     <>
-      {/* place holder */}
-      <h1>WATCH</h1>
       {isLoading ? null : (
         <>
           <Route exact path="/watch">
-            <div style={{ display: 'flex' }}>{videoLinks}</div>
+            <StyledVideoContainer>{videoLinks}</StyledVideoContainer>
           </Route>
 
           {selectVideo}
@@ -65,19 +61,38 @@ const Watch = () => {
 
 export default Watch;
 
+const StyledImage = styled.img`
+  width: 100%;
+`;
+
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   border-bottom: none;
   color: ${({ theme }) => theme.fontColor};
-  width: 150px;
-  align-self: center;
-  text-align: center;
-  border: 3px solid ${({ theme }) => theme.fontAccent};
-  border-radius: 0.5rem;
+  width: 250px;
   margin-bottom: 5px;
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  margin: 0px 15px;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+  font-size: 1.2rem;
+  font-weight: bold;
 
-  &:hover {
+  /* &:hover {
     background-color: ${({ theme }) => theme.fontAccent};
+  } */
+  @media ${({ theme }) => theme.laptop} {
+    width: 200px;
+    font-size: 1rem;
   }
+  @media ${({ theme }) => theme.tablet} {
+    width: 150px;
+    font-size: 1rem;
+  }
+`;
+
+const StyledVideoContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 5%;
+  margin-top: 40px;
 `;

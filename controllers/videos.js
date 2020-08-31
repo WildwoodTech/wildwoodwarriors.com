@@ -21,11 +21,45 @@ exports.getVideos = async (req, res, next) => {
 // @route   GET /api/v1/videos/thumbnail/:id
 // @access  Public
 exports.getThumbnail = async (req, res) => {
-  console.log(req.params);
   try {
-    console.log('IMAGE HERE');
     const path = `assets/videos/converted/thumbnails/${req.params.id}.png`;
-    res.sendFile(path);
+    const stat = fs.statSync(path);
+    const fileSize = stat.size;
+    const range = req.headers.range;
+
+    if (range) {
+      const parts = range.replace(/bytes=/, '').split('-');
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+
+      if (start >= fileSize) {
+        res
+          .status(416)
+          .send(
+            'Requested range not satisfiable\n' + start + ' >= ' + fileSize
+          );
+        return;
+      }
+
+      const chunksize = end - start + 1;
+      const file = fs.createReadStream(path, { start, end });
+      const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': 'image/png',
+      };
+
+      res.writeHead(206, head);
+      file.pipe(res);
+    } else {
+      const head = {
+        'Content-Length': fileSize,
+        'Content-Type': 'image/png',
+      };
+      res.writeHead(200, head);
+      fs.createReadStream(path).pipe(res);
+    }
   } catch (error) {}
 };
 
@@ -33,8 +67,6 @@ exports.getThumbnail = async (req, res) => {
 // @route   GET /api/v1/videos/:id
 // @access  Public
 exports.getVideo = async (req, res, next) => {
-  console.log(req.params);
-
   try {
     const path = `assets/videos/converted/${req.params.id}`;
     const stat = fs.statSync(path);
@@ -90,6 +122,7 @@ exports.uploadVideo = async (req, res, next) => {
       req.filename
     );
 
+    console.log('JUST DID THIS, LE POO');
     const video = await Video.create({
       title: req.body.title,
       path: `./assets/videos/converted/${req.filename}`,
