@@ -14,6 +14,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  font-family: Quicksand,sans-serif;
 }
 
 body {

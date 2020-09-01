@@ -1,6 +1,13 @@
 const User = require('../models/User');
 const db = require('../config/db');
 
+// @desc    Get single user
+// @route   GET /api/v1/users/:id
+// @access  Private
+exports.getUser = async (req, res, next) => {
+  res.status(200).json({ success: true, user: req.user });
+};
+
 // @desc    Create new user
 // @route   POST /api/v1/users
 // @access  Public
@@ -20,6 +27,7 @@ exports.createUser = async (req, res, next) => {
 // @route   POST /api/v1/users/login
 // @access  Private
 exports.loginUser = async (req, res, next) => {
+  console.log(req.body);
   try {
     const user = await User.findByCredentials(
       req.body.username,
@@ -41,10 +49,6 @@ exports.loginUser = async (req, res, next) => {
     res.cookie('authToken', token, {
       // maxAge: 48 * 60 * 60 * 1000,
       httpOnly: true,
-      ...options,
-    });
-    res.cookie('loggedIn', 1, {
-      // maxAge: 48 * 60 * 60 * 1000,
       ...options,
     });
     res.status(200).json({ success: true, user, token });

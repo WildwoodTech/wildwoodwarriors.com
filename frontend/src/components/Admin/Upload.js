@@ -7,6 +7,7 @@ const Upload = () => {
 
   const inputFormUpload = (e) => {
     setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
   };
 
   const fileSubmit = async (e) => {
@@ -24,17 +25,104 @@ const Upload = () => {
   };
 
   return (
-    <>
-      <form onSubmit={fileSubmit}>
-        <input type="file" name="videoFile" onChange={inputFormUpload}></input>
-        <label htmlFor="title">Title:</label>
-        <input type="text" name="title"></input>
-        <label htmlFor="category">Category:</label>
-        <input type="text" name="category"></input>
-        <button type="submit">Upload</button>
-      </form>
-    </>
+    <StyledLoginContainer>
+      <StyledForm onSubmit={fileSubmit}>
+        <StyledFileLabel htmlFor="file-upload">Click to Upload</StyledFileLabel>
+        {file && (
+          <>
+            <StyledP>Uploaded File:</StyledP>
+            <StyledFileName>{file.name}</StyledFileName>
+          </>
+        )}
+        <StyledFileInput
+          id="file-upload"
+          type="file"
+          name="videoFile"
+          onChange={inputFormUpload}
+        ></StyledFileInput>
+        <StyledLabel htmlFor="title">Title:</StyledLabel>
+        <StyledInput type="text" name="title"></StyledInput>
+        <StyledLabel htmlFor="category">Category:</StyledLabel>
+        <StyledInput type="text" name="category"></StyledInput>
+        <StyledButton type="submit">Upload</StyledButton>
+      </StyledForm>
+    </StyledLoginContainer>
   );
 };
+
+const StyledP = styled.p`
+  margin-top: 10px;
+`;
+
+const StyledFileName = styled.p`
+  width: 250px;
+  word-wrap: break-word;
+  margin-bottom: 15px;
+`;
+
+const StyledFileLabel = styled.label`
+  margin-bottom: 2px;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+  }
+`;
+
+const StyledFileInput = styled.input`
+  display: none;
+  width: 100%;
+`;
+
+const StyledLabel = styled.label`
+  margin-bottom: 2px;
+`;
+
+const StyledInput = styled.input`
+  color: ${({ theme }) => theme.fontColor};
+  width: 250px;
+  height: 30px;
+  border: 3px solid ${({ theme }) => theme.fontAccent};
+  border-radius: 0.5rem;
+  margin-bottom: 5px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background-color: ${({ theme }) => theme.buttonBackgroundColor};
+  text-align: center;
+  justify-self: center;
+  margin-bottom: 5px;
+`;
+
+const StyledButton = styled.button`
+  color: ${({ theme }) => theme.fontColor};
+  height: 30px;
+  border: 3px solid ${({ theme }) => theme.fontAccent};
+  border-radius: 0.5rem;
+  margin-top: 5px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background-color: ${({ theme }) => theme.buttonBackgroundColor};
+  text-align: center;
+  justify-self: center;
+  width: 100px;
+  justify-self: center;
+
+  &:hover {
+    cursor: pointer;
+    color: #edf2f7;
+    background-color: ${({ theme }) => theme.fontAccent};
+    border: 3px solid ${({ theme }) => theme.buttonBorderHoverColor};
+  }
+`;
+
+const StyledForm = styled.form`
+  display: grid;
+  flex-direction: column;
+  width: 250px;
+  margin-top: 40px;
+`;
+
+const StyledLoginContainer = styled.div`
+  display: grid;
+  justify-content: center;
+`;
 
 export default Upload;

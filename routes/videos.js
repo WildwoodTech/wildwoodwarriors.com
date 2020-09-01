@@ -29,7 +29,10 @@ const authentication = require('../middleware/authentication');
 
 const router = new express.Router();
 
-router.route('/').get(getVideos).post(upload.single('videoFile'), uploadVideo);
+router
+  .route('/')
+  .get(getVideos)
+  .post(authentication, upload.single('videoFile'), uploadVideo);
 
 router
   .route('/:id')
