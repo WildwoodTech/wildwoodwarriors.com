@@ -27,7 +27,6 @@ exports.createUser = async (req, res, next) => {
 // @route   POST /api/v1/users/login
 // @access  Private
 exports.loginUser = async (req, res, next) => {
-  console.log(req.body);
   try {
     const user = await User.findByCredentials(
       req.body.username,

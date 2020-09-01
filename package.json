@@ -4,10 +4,10 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "prestart": "yarn install && cd frontend && yarn install && yarn build",
+    "prestart": "npm i && cd frontend && npm i && npm run build",
     "start": "cross-env NODE_ENV=production node server.js",
     "dev-api": "nodemon server.js",
-    "dev": "concurrently \"nodemon server.js\" \"cd frontend && yarn start\""
+    "dev": "concurrently \"nodemon server.js\" \"cd frontend && npm start\""
   },
   "keywords": [],
   "author": "Ericarthurc",
