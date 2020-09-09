@@ -134,6 +134,11 @@ const StyledHeadser = styled.h1`
   margin: 0 6%;
   border-bottom: 3px solid ${({ theme }) => theme.fontAccent};
   display: inline;
+
+  @media ${({ theme }) => theme.tablet} {
+    font-size: 24px;
+    margin: 0 8%;
+  }
 `;
 
 const StyledImage = styled.img`
