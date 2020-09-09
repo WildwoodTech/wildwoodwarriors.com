@@ -60,7 +60,9 @@ exports.getThumbnail = async (req, res) => {
       res.writeHead(200, head);
       fs.createReadStream(path).pipe(res);
     }
-  } catch (error) {}
+  } catch (error) {
+    res.status(404).json({ success: false, error });
+  }
 };
 
 // @desc    Get single video

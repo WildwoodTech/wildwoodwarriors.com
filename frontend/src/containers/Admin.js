@@ -28,9 +28,9 @@ const Admin = () => {
         <Login setNeedLogin={setNeedLogin} setUser={setUser}></Login>
       ) : user ? (
         <>
-          <p>
+          <StyledP>
             Your logged in as <strong>{user.username}</strong>
-          </p>
+          </StyledP>
           <Upload></Upload>
         </>
       ) : null}
@@ -39,3 +39,8 @@ const Admin = () => {
 };
 
 export default Admin;
+
+const StyledP = styled.p`
+  margin-top: 25px;
+  text-align: center;
+`;
