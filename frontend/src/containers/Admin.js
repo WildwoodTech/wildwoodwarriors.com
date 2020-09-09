@@ -13,7 +13,6 @@ const Admin = () => {
     try {
       const user = await axios.get('/api/v1/users/', { withCredentials: true });
       setUser(user.data.user);
-      console.log(user.data.user);
     } catch (error) {
       setNeedLogin(true);
     }

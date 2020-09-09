@@ -4,7 +4,7 @@ const child_process = require('child_process');
 // const output = "./videos/test_test.mp4";
 // const resolution = "1280x720";
 // const bitrate = "1000k";
-const encode = (input, output, resolution, bitrate) => {
+const encode = (input, output, filename) => {
   return new Promise((resolve, reject) => {
     child_process.execFile(
       'ffmpeg',
@@ -13,9 +13,9 @@ const encode = (input, output, resolution, bitrate) => {
         '-i',
         input,
         '-s',
-        resolution,
+        '1280x720',
         '-b:v',
-        bitrate,
+        '3000k',
         '-b:a',
         '128k',
         '-c:v',
@@ -24,6 +24,13 @@ const encode = (input, output, resolution, bitrate) => {
         'aac',
         '-f',
         'mp4',
+        '-ss',
+        '10',
+        '-vframes',
+        '1',
+        '-q:v',
+        '2',
+        `./assets/videos/converted/thumbnails/${filename}.jpg`,
         // "-threads",
         // "6",
         output,
@@ -35,6 +42,7 @@ const encode = (input, output, resolution, bitrate) => {
         if (error != null || stderr) {
           return reject({ error, stderr });
         }
+        console.log('Finished!');
         return resolve(stdout);
       }
     );

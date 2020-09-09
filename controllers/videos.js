@@ -121,8 +121,6 @@ exports.uploadVideo = async (req, res, next) => {
       `./assets/videos/converted/${req.filename}`,
       req.filename
     );
-
-    console.log('JUST DID THIS, LE POO');
     const video = await Video.create({
       title: req.body.title,
       path: `./assets/videos/converted/${req.filename}`,

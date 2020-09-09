@@ -4,10 +4,10 @@ import axios from 'axios';
 
 const Upload = () => {
   const [file, setFile] = useState(null);
+  const [percent, setPercent] = useState(0);
 
   const inputFormUpload = (e) => {
     setFile(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
 
   const fileSubmit = async (e) => {
@@ -17,7 +17,15 @@ const Upload = () => {
     formData.append('title', e.target.title.value);
     formData.append('category', e.target.category.value);
     try {
-      const data = await axios.post('/api/v1/videos', formData);
+      const options = {
+        onUploadProgress: (progreeEvent) => {
+          const { loaded, total } = progreeEvent;
+          let percent = Math.floor((loaded * 100) / total);
+          setPercent(percent);
+        },
+      };
+
+      const data = await axios.post('/api/v1/videos', formData, options);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -44,7 +52,14 @@ const Upload = () => {
         <StyledInput type="text" name="title"></StyledInput>
         <StyledLabel htmlFor="category">Category:</StyledLabel>
         <StyledInput type="text" name="category"></StyledInput>
-        <StyledButton type="submit">Upload</StyledButton>
+        {percent === 0 ? (
+          <StyledButton type="submit">Upload</StyledButton>
+        ) : (
+          <>
+            <StyledP>Please dont close page while uploading!</StyledP>
+            <StyledP>Uploaded {percent}%</StyledP>
+          </>
+        )}
       </StyledForm>
     </StyledLoginContainer>
   );

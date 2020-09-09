@@ -104,8 +104,8 @@ userSchema.pre('remove', async function (next) {
 
 const User = mongoose.model('User', userSchema);
 
-User.createCollection().then(function (collection) {
-  console.log(chalk.green('User collection created!'));
-});
+// User.createCollection().then(function (collection) {
+//   console.log(chalk.green('User collection created!'));
+// });
 
 module.exports = User;
