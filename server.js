@@ -62,7 +62,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './frontend/build/index.html'));
 });
 
-app.listen(process.env.PORT, () =>
+server.listen(process.env.PORT, () =>
   console.log(
     chalk.yellow.bold.underline(`Server running on port: ${process.env.PORT}`)
   )

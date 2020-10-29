@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import socketIOClient from 'socket.io-client';
 
 const Upload = () => {
   const [file, setFile] = useState(null);
   const [percent, setPercent] = useState(0);
+  // const [encodePercent, setEncodePercent] = useState(0);
+
+  // useEffect(() => {
+  //   const socket = socketIOClient();
+  //   socket.on('encode-progress', (data) => setEncodePercent(data.progress));
+  // }, []);
 
   const inputFormUpload = (e) => {
     setFile(e.target.files[0]);
@@ -24,9 +31,7 @@ const Upload = () => {
           setPercent(percent);
         },
       };
-
       const data = await axios.post('/api/v1/videos', formData, options);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -52,14 +57,30 @@ const Upload = () => {
         <StyledInput type="text" name="title"></StyledInput>
         <StyledLabel htmlFor="category">Category:</StyledLabel>
         <StyledInput type="text" name="category"></StyledInput>
+        {/* {(() => {
+          switch (true) {
+            case percent === 0:
+              return <StyledButton type="submit">Upload</StyledButton>;
+            case percent > 0 && percent < 100:
+              return (
+                <>
+                  <StyledP>Please dont close page while uploading!</StyledP>
+                  <StyledP>Uploaded {percent}%</StyledP>
+                </>
+              );
+            case percent === 100:
+              return <p>{encodePercent}</p>;
+            default:
+          }
+        })()} */}
         {percent === 0 ? (
           <StyledButton type="submit">Upload</StyledButton>
         ) : (
-          <>
-            <StyledP>Please dont close page while uploading!</StyledP>
-            <StyledP>Uploaded {percent}%</StyledP>
-          </>
-        )}
+            <>
+              <StyledP>Please dont close page while uploading!</StyledP>
+              <StyledP>Uploaded {percent}%</StyledP>
+            </>
+          )}
       </StyledForm>
     </StyledLoginContainer>
   );

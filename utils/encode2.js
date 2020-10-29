@@ -1,6 +1,6 @@
 const ffmpeg = require('fluent-ffmpeg');
 
-const encode2 = async (input, output, filename) => {
+const encode2 = async (input, output, filename, socket) => {
   return new Promise((resolve, reject) => {
     ffmpeg()
       .input(input)
@@ -10,7 +10,10 @@ const encode2 = async (input, output, filename) => {
       .size('1280x720')
       .audioCodec('aac')
       .audioBitrate('128k')
-      .on('progress', (progress) => console.log(progress.percent))
+      .on('progress', (progress) => {
+        // socket.emit('encode-progress', { progress: progress.percent });
+        console.log(progress.percent);
+      })
       .on('error', (error) => {
         return reject(error);
       })

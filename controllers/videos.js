@@ -121,7 +121,8 @@ exports.uploadVideo = async (req, res, next) => {
     await encode2(
       `./assets/videos/${req.filename}`,
       `./assets/videos/converted/${req.filename}`,
-      req.filename
+      req.filename,
+      req.io
     );
     const video = await Video.create({
       title: req.body.title,

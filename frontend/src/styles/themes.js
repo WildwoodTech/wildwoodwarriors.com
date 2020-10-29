@@ -1,22 +1,22 @@
 const lightTheme = {
   backgroundColor: '#edf2f7',
-  fontColor: '#201f1d',
+  fontColor: '#262626',
   fontAccent: '#802023',
   navBar: '#bec2C6',
   // navBarFontColor: '#edf2f7',
-  themeSwitcherBackground: '#201f1d',
+  themeSwitcherBackground: '#262626',
   themeSwitcherCircle: '#edf2f7',
   buttonBackgroundColor: '#80202350',
-  buttonBorderHoverColor: '#201f1d',
+  buttonBorderHoverColor: '#262626',
 };
 
 const darkTheme = {
-  backgroundColor: '#201f1d',
+  backgroundColor: '#262626',
   fontColor: '#edf2f7',
   fontAccent: '#802023',
   navBar: '#181818',
   themeSwitcherBackground: '#edf2f7',
-  themeSwitcherCircle: '#201f1d',
+  themeSwitcherCircle: '#262626',
   buttonBackgroundColor: '#80202350',
   buttonBorderHoverColor: '#edf2f7',
 };

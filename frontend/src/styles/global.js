@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
 html {
   box-sizing: border-box;
-  font-family: Quicksand, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -14,7 +14,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-  font-family: Quicksand,sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {

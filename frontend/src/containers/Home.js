@@ -43,7 +43,7 @@ const StyledLink = styled(NavLink)`
   margin-bottom: 20px;
   background-color: ${({ theme }) => theme.buttonBackgroundColor};
   text-align: center;
-  padding-top: 7px;
+  padding-top: 5px;
   font-size: 1.5rem;
 
   &:hover {
