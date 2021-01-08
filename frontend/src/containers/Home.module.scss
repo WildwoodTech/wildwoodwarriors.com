@@ -1,0 +1,54 @@
+.Header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin-top: 20px;
+}
+
+.Header-Logo {
+  justify-self: center;
+  height: 100px;
+}
+
+.Link-Container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 20%;
+  margin-top: 40px;
+  justify-content: center;
+
+  @media screen and (max-width: 1440px) {
+    margin: 0 5%;
+    margin-top: 40px;
+  }
+}
+
+.Link {
+  display: grid;
+  text-decoration: none;
+  border-bottom: none;
+  color: var(--color-font);
+  width: 200px;
+  height: 50px;
+  border: 3px solid var(--color-fontAccent);
+  border-radius: 0.5rem;
+  margin-bottom: 5px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  margin: 0px 2%;
+  margin-bottom: 20px;
+  background-color: var(--color-buttonBg);
+  text-align: center;
+  padding-top: 7px;
+  font-size: 1.5rem;
+
+  &:hover {
+    color: #edf2f7;
+    background-color: var(--color-fontAccent);
+    border: 3px solid var(--color-buttonHover);
+  }
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    font-size: 1rem;
+    padding-top: 12px;
+  }
+}

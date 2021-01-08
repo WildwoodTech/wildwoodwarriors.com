@@ -1,13 +1,13 @@
 {
   "name": "online.wildwoodwarriors.com",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "prestart": "npm i && cd frontend && npm i && npm run build",
     "start": "cross-env NODE_ENV=production node server.js",
-    "dev-api": "nodemon server.js",
-    "dev": "concurrently \"nodemon server.js\" \"cd frontend && npm start\""
+    "dev": "concurrently \"nodemon server.js\" \"cd frontend && npm start\"",
+    "dev-api": "nodemon --ignore frontend/* server.js"
   },
   "keywords": [],
   "author": "Ericarthurc",

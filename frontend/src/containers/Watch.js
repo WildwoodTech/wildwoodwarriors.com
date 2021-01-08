@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import styles from './Watch.module.scss';
 import { Route, NavLink, Redirect } from 'react-router-dom';
-import styled from 'styled-components';
 import axios from 'axios';
 
 // Components
@@ -29,9 +29,8 @@ const Watch = () => {
   const peArray = [];
   const leftOverArray = [];
 
-  const sortedArray = videos
+  videos
     .sort((a, b) => {
-      console.log(a);
       return a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0;
     })
     .find((value) => {
@@ -46,44 +45,65 @@ const Watch = () => {
 
   const chapelLinks = chapelArray.map((video) => {
     return (
-      <StyledLink key={video._id} exact to={`/watch/${video.videoId}`}>
-        <StyledImage
+      <NavLink
+        className={styles['Link']}
+        key={video._id}
+        exact
+        to={`/watch/${video.videoId}`}
+      >
+        <img
+          className={styles['Image']}
           src={`/api/v1/videos/thumbnail/${video.videoId}`}
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = PlaceholderImage;
           }}
         />
+
         {video.title}
-      </StyledLink>
+      </NavLink>
     );
   });
   const peLinks = peArray.map((video) => {
     return (
-      <StyledLink key={video._id} exact to={`/watch/${video.videoId}`}>
-        <StyledImage
+      <NavLink
+        className={styles['Link']}
+        key={video._id}
+        exact
+        to={`/watch/${video.videoId}`}
+      >
+        <img
+          className={styles['Image']}
           src={`/api/v1/videos/thumbnail/${video.videoId}`}
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = PlaceholderImage;
           }}
         />
+
         {video.title}
-      </StyledLink>
+      </NavLink>
     );
   });
   const leftOverLinks = leftOverArray.map((video) => {
     return (
-      <StyledLink key={video._id} exact to={`/watch/${video.videoId}`}>
-        <StyledImage
+      <NavLink
+        className={styles['Link']}
+        key={video._id}
+        exact
+        to={`/watch/${video.videoId}`}
+      >
+        <img
+          className={styles['Image']}
           src={`/api/v1/videos/thumbnail/${video.videoId}`}
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = PlaceholderImage;
           }}
         />
+
         {video.title}
-      </StyledLink>
+      </NavLink>
     );
   });
 
@@ -106,17 +126,23 @@ const Watch = () => {
       {isLoading ? null : (
         <>
           <Route exact path="/watch">
-            <StyledCategory>
-              <StyledHeadser>Chapel Videos</StyledHeadser>
-              <StyledVideoContainer>{chapelLinks}</StyledVideoContainer>
-            </StyledCategory>
+            <div className={styles['Category']}>
+              <div className={styles['Listing-Container']}>
+                <p className={styles['Header']}>Chapel Videos</p>
+                <div className={styles['Video-Container']}>{chapelLinks}</div>
+              </div>
+            </div>
 
-            <StyledCategory>
-              <StyledHeadser>PE Videos</StyledHeadser>
-              <StyledVideoContainer>{peLinks}</StyledVideoContainer>
-            </StyledCategory>
+            <div className={styles['Category']}>
+              <div className={styles['Listing-Container']}>
+                <p className={styles['Header']}>PE Videos</p>
+                <div className={styles['Video-Container']}>{peLinks}</div>
+              </div>
+            </div>
 
-            <StyledVideoContainer>{leftOverLinks}</StyledVideoContainer>
+            <div className={styles['Listing-Container']}>
+              <div className={styles['Video-Container']}>{leftOverLinks}</div>
+            </div>
           </Route>
 
           {selectVideo}
@@ -127,56 +153,3 @@ const Watch = () => {
 };
 
 export default Watch;
-
-const StyledHeadser = styled.h1`
-  margin: 0px;
-  padding: 0px;
-  margin: 0 6%;
-  border-bottom: 3px solid ${({ theme }) => theme.fontAccent};
-  display: inline;
-
-  @media ${({ theme }) => theme.tablet} {
-    font-size: 24px;
-    margin: 0 8%;
-  }
-`;
-
-const StyledImage = styled.img`
-  width: 100%;
-`;
-
-const StyledLink = styled(NavLink)`
-  text-decoration: none;
-  border-bottom: none;
-  color: ${({ theme }) => theme.fontColor};
-  width: 250px;
-  margin-bottom: 5px;
-  margin: 0px 15px;
-  margin-bottom: 30px;
-  word-wrap: break-word;
-  font-size: 1.2rem;
-  font-weight: bold;
-
-  /* &:hover {
-    background-color: ${({ theme }) => theme.fontAccent};
-  } */
-  @media ${({ theme }) => theme.laptop} {
-    width: 200px;
-    font-size: 1rem;
-  }
-  @media ${({ theme }) => theme.tablet} {
-    width: 150px;
-    font-size: 1rem;
-  }
-`;
-
-const StyledVideoContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0 5%;
-  margin-top: 20px;
-`;
-
-const StyledCategory = styled.div`
-  margin-top: 25px;
-`;

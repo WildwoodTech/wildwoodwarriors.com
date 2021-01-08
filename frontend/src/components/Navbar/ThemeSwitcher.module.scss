@@ -1,0 +1,65 @@
+.Label {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 24px;
+  margin-right: 24px;
+
+  // Kill margin when Title is hidden
+  @media screen and (max-width: 375px) {
+    margin: 0;
+  }
+
+  // Hides switcher when screen size too small
+  @media screen and (max-width: 226px) {
+    display: none;
+  }
+}
+
+.Span {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* switcher background */
+  /* ${({ theme }) => theme.backgroundColor} */
+  background-color: var(--color-switcherBg);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--color-switcherBtn);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+}
+
+.Input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + .Span {
+    background-color: var(--color-switcherBg);
+  }
+
+  &:focus + .Span {
+    box-shadow: 0 0 1px #2196f3;
+  }
+
+  &:checked + .Span::before {
+    -webkit-transform: translateX(19px);
+    -ms-transform: translateX(19px);
+    transform: translateX(19px);
+  }
+}

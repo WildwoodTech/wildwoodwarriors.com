@@ -1,0 +1,70 @@
+:root {
+  --color-bg: #262626;
+  --color-font: #edf2f7;
+  --color-fontAccent: #802023;
+  --color-navBar: #181818;
+  --color-switcherBg: #edf2f7;
+  --color-switcherBtn: #262626;
+  --color-buttonBg: #80202350;
+  --color-buttonHover: #edf2f7;
+}
+
+[data-theme='light'] {
+  --color-bg: #edf2f7;
+  --color-font: #262626;
+  --color-fontAccent: #802023;
+  --color-navBar: #bec2c6;
+  --color-switcherBg: #262626;
+  --color-switcherBtn: #edf2f7;
+  --color-buttonBg: #80202350;
+  --color-buttonHover: #262626;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: Roboto, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--color-bg);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  // background-color: var(--color-bg);
+  color: var(--color-font);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-font) var(--color-bg);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-fontAccent);
+  border: 3px solid var(--color-fontAccent);
+}
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
+}
+a:active {
+  background: transparent;
+}
+label:active {
+  background: transparent;
+}

@@ -1,73 +1,33 @@
-import React from 'react';
+import styles from './Navbar.module.scss';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 import ThemeSwitch from './ThemeSwitcher';
 
 const Navbar = () => {
   return (
-    <StyledNav>
-      <StyledNavTitleDiv>
-        <StyledNavTitle exact to="/">
+    <div className={styles['Container']}>
+      <div className={styles['Title-Container']}>
+        <NavLink className={styles['Title']} exact to="/">
           Warriors
-        </StyledNavTitle>
-      </StyledNavTitleDiv>
-      <StyledLink exact to="/">
+        </NavLink>
+      </div>
+      <NavLink
+        className={styles['Link']}
+        activeClassName={styles['Active']}
+        exact
+        to="/"
+      >
         Home
-      </StyledLink>
-      <StyledLink to="/watch">Videos</StyledLink>
+      </NavLink>
+      <NavLink
+        className={styles['Link']}
+        activeClassName={styles['Active']}
+        to="/watch"
+      >
+        Videos
+      </NavLink>
       <ThemeSwitch></ThemeSwitch>
-    </StyledNav>
+    </div>
   );
 };
 
 export default Navbar;
-
-const activeClassName = 'nav-item-active';
-
-const StyledNavTitleDiv = styled.div`
-  flex-grow: 1;
-`;
-
-const StyledNavTitle = styled(NavLink)`
-  text-decoration: none;
-  border-bottom: none;
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.fontAccent};
-  margin: 0 0 0 1.5rem;
-`;
-
-const StyledLink = styled(NavLink).attrs({ activeClassName })`
-  text-decoration: none;
-  border-bottom: none;
-  color: ${({ theme }) => theme.fontColor};
-  margin-right: 1.5rem;
-  font-weight: 500;
-  font-size: 1.3rem;
-  border-radius: 0.25rem;
-
-  &:hover {
-    color: ${({ theme }) => theme.fontAccent};
-  }
-
-  &.${activeClassName} {
-    color: ${({ theme }) => theme.fontAccent};
-  }
-`;
-
-const StyledNav = styled.div`
-  display: flex;
-  height: 50px;
-  justify-content: space-around;
-  align-items: center;
-  background-color: ${({ theme }) => theme.navBar};
-
-  @media ${({ theme }) => theme.mobileM} {
-    ${StyledNavTitleDiv} {
-      display: none;
-    }
-    ${StyledLink} {
-      padding: 0;
-    }
-  }
-`;

@@ -1,0 +1,52 @@
+.Container {
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-navBar);
+
+  @media screen and (max-width: 375px) {
+    .Title-Container {
+      display: none;
+    }
+    .Link {
+      padding: 0;
+    }
+  }
+}
+
+.Title-Container {
+  flex-grow: 1;
+}
+
+.Title {
+  text-decoration: none;
+  border-bottom: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--color-fontAccent);
+  margin: 0 0 0 1.5rem;
+}
+
+.Link {
+  text-decoration: none;
+  border-bottom: none;
+  color: var(--color-fontColor);
+  margin-right: 1.5rem;
+  font-weight: 500;
+  font-size: 1.3rem;
+  border-radius: 0.25rem;
+
+  &:hover {
+    color: var(--color-fontAccent);
+  }
+
+  // Kills margin when switcher is hidden
+  @media screen and (max-width: 226px) {
+    margin: 0;
+  }
+}
+
+.Active {
+  color: var(--color-fontAccent);
+}

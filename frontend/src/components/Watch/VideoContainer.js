@@ -1,22 +1,28 @@
 import React from 'react';
-
-// Needs styled components rework
+import styles from './VideoContainer.module.scss';
+import { NavLink } from 'react-router-dom';
 
 const VideoContainer = (props) => {
   console.log(props);
   return (
     <>
-      <div className="Content">
+      <div className={styles['Main-Container']}>
         <div></div>
-        <div className="Content__Player">
-          <div className="player-wrapper">
-            <video className="react-player" width="100%" height="100%" controls>
+        <div className={styles['Player-Wrapper']}>
+          <div className={styles['Video-Wrapper']}>
+            <video
+              className={styles['Video']}
+              width="100%"
+              height="100%"
+              controls
+            >
               <source
                 src={`/api/v1/videos/${props.videoInfo.videoId}`}
                 type="video/mp4"
               ></source>
             </video>
           </div>
+          <p className={styles['Title']}>{props.videoInfo.title}</p>
         </div>
         <div></div>
       </div>

@@ -30,6 +30,7 @@ app.use((req, res, next) => {
   req.io = io;
   next();
 });
+
 // Enable CORS
 app.use(cors());
 

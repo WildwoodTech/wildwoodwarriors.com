@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Login from '../components/Admin/Login';
@@ -28,9 +27,14 @@ const Admin = () => {
         <Login setNeedLogin={setNeedLogin} setUser={setUser}></Login>
       ) : user ? (
         <>
-          <StyledP>
+          <p
+            style={{
+              marginTop: '25px',
+              textAlign: 'center',
+            }}
+          >
             Your logged in as <strong>{user.username}</strong>
-          </StyledP>
+          </p>
           <Upload></Upload>
         </>
       ) : null}
@@ -39,8 +43,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
-const StyledP = styled.p`
-  margin-top: 25px;
-  text-align: center;
-`;

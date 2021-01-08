@@ -1,85 +1,36 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-
-import { ThemeContext } from '../../context/theme-context';
+import { useLayoutEffect, useState } from 'react';
+import styles from './ThemeSwitcher.module.scss';
 
 const ThemeSwitcher = () => {
-  const themeContext = useContext(ThemeContext);
+  const [checked, setChecked] = useState(
+    localStorage.getItem('theme') === 'light'
+  );
+
+  useLayoutEffect(() => {
+    console.log('HERE');
+    if (checked) {
+      localStorage.setItem('theme', 'light');
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  });
 
   return (
-    <>
-      <StyledSwitch>
-        <StyledInput
-          type="checkbox"
-          checked={themeContext.theme}
-          onChange={() => {
-            themeContext.themeHandler(!themeContext.theme);
-          }}
-        />
-        <StyledSpan></StyledSpan>
-      </StyledSwitch>
-    </>
+    <label className={styles['Label']}>
+      <input
+        className={styles['Input']}
+        id="themeSwitch"
+        type="checkbox"
+        checked={checked}
+        onChange={() => {
+          setChecked(!checked);
+        }}
+      />
+      <span className={styles['Span']}></span>
+    </label>
   );
 };
 
 export default ThemeSwitcher;
-
-const StyledSwitch = styled.label`
-  position: relative;
-  display: inline-block;
-  width: 45px;
-  height: 24px;
-  margin-right: 24px;
-
-  @media ${({ theme }) => theme.mobileM} {
-    margin: 0;
-  }
-`;
-
-const StyledSpan = styled.span`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* switcher background */
-  /* ${({ theme }) => theme.backgroundColor} */
-  background-color: ${({ theme }) => theme.themeSwitcherBackground};
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 34px;
-
-  &::before {
-    position: absolute;
-    content: '';
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: ${({ theme }) => theme.themeSwitcherCircle};
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-`;
-
-const StyledInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-
-  &:checked + ${StyledSpan} {
-    background-color: ${({ theme }) => theme.themeSwitcherBackground};
-  }
-
-  &:focus + ${StyledSpan} {
-    /* box-shadow: 0 0 1px #2196f3; */
-  }
-
-  &:checked + ${StyledSpan}::before {
-    -webkit-transform: translateX(19px);
-    -ms-transform: translateX(19px);
-    transform: translateX(19px);
-  }
-`;
