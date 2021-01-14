@@ -1,23 +1,23 @@
 :root {
-  --color-bg: #262626;
+  --color-bg: #2e2e2e;
   --color-font: #edf2f7;
   --color-fontAccent: #802023;
   --color-navBar: #181818;
   --color-switcherBg: #edf2f7;
-  --color-switcherBtn: #262626;
+  --color-switcherBtn: #2e2e2e;
   --color-buttonBg: #80202350;
   --color-buttonHover: #edf2f7;
 }
 
 [data-theme='light'] {
   --color-bg: #edf2f7;
-  --color-font: #262626;
+  --color-font: #2e2e2e;
   --color-fontAccent: #802023;
   --color-navBar: #bec2c6;
-  --color-switcherBg: #262626;
+  --color-switcherBg: #2e2e2e;
   --color-switcherBtn: #edf2f7;
   --color-buttonBg: #80202350;
-  --color-buttonHover: #262626;
+  --color-buttonHover: #2e2e2e;
 }
 
 html {
